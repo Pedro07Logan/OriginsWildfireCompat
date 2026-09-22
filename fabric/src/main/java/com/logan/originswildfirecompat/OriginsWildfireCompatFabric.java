@@ -1,0 +1,90 @@
+package com.logan.originswildfirecompat;
+
+import com.wildfire.api.WildfireAPI;
+import com.wildfire.main.GenderPlayer;
+import com.wildfire.main.networking.PacketSync;
+import io.github.apace100.origins.component.OriginComponent;
+import io.github.apace100.origins.origin.Origin;
+import io.github.apace100.origins.origin.OriginLayer;
+import io.github.apace100.origins.origin.OriginLayers;
+import io.github.apace100.origins.registry.ModComponents;
+import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
+import virtuoel.pehkui.api.ScaleData;
+import virtuoel.pehkui.api.ScaleTypes;
+
+public class OriginsWildfireCompatFabric implements ModInitializer {
+    public static final String MOD_ID = "originswildfirecompat";
+    private static final ResourceLocation GENDER_LAYER_ID = new ResourceLocation(MOD_ID, "gender");
+    private static final ResourceLocation FEMALE_ID = new ResourceLocation(MOD_ID, "female");
+    private static final ResourceLocation MALE_ID = new ResourceLocation(MOD_ID, "male");
+
+    @Override
+    public void onInitialize() {
+        ServerTickEvents.END_SERVER_TICK.register(server -> {
+            for (ServerPlayer player : server.getPlayerList().getPlayers()) {
+                tickPlayer(player);
+            }
+        });
+    }
+
+    private static void tickPlayer(ServerPlayer player) {
+        OriginLayer layer = OriginLayers.getLayer(GENDER_LAYER_ID);
+        if (layer == null) {
+            resetScale(player);
+            return;
+        }
+        OriginComponent component = ModComponents.ORIGIN.get(player);
+        Origin current = component.getOrigin(layer);
+        if (current == null || current == Origin.EMPTY) {
+            resetScale(player);
+            return;
+        }
+        ResourceLocation currentId = current.getIdentifier();
+        if (FEMALE_ID.equals(currentId)) {
+            applyScale(player, 0.93F);
+            applyGender(player, GenderPlayer.Gender.FEMALE);
+        } else if (MALE_ID.equals(currentId)) {
+            applyScale(player, 1.05F);
+            applyGender(player, GenderPlayer.Gender.MALE);
+        } else {
+            resetScale(player);
+        }
+    }
+
+    private static void applyScale(ServerPlayer player, float target) {
+        ScaleData data = ScaleTypes.HEIGHT.getScaleData(player);
+        if (Math.abs(data.getTargetScale() - target) > 0.001F) {
+            data.setTargetScale(target);
+            data.setScale(target);
+            data.markForSync(true);
+        }
+    }
+
+    private static void resetScale(ServerPlayer player) {
+        ScaleData data = ScaleTypes.HEIGHT.getScaleData(player);
+        if (Math.abs(data.getTargetScale() - 1.0F) > 0.001F) {
+            data.resetScale();
+            data.markForSync(true);
+        }
+    }
+
+    private static void applyGender(ServerPlayer player, GenderPlayer.Gender desired) {
+        GenderPlayer gp = WildfireAPI.getPlayerById(player.getUUID());
+        if (gp == null) {
+            return;
+        }
+        if (gp.getGender() != desired) {
+            gp.updateGender(desired);
+            if (desired == GenderPlayer.Gender.FEMALE) {
+                gp.updateHurtSounds(true);
+                if (gp.getBustSize() < 0.1F) {
+                    gp.updateBustSize(0.6F);
+                }
+            }
+            PacketSync.sendToOthers(player, gp);
+        }
+    }
+}

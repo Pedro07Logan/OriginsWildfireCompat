@@ -1,0 +1,14 @@
+{
+  "powers": [
+    "originswildfirecompat:female_attributes",
+    "originswildfirecompat:female_exhaustion",
+    "originswildfirecompat:female_taken_damage"
+  ],
+  "icon": {
+    "item": "minecraft:rose_bush"
+  },
+  "order": 1,
+  "impact": 2,
+  "name": "Female",
+  "description": "The gender of beauty and delicacy. Adds voice and physical characteristics."
+}

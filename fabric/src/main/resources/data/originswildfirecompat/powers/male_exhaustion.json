@@ -1,0 +1,10 @@
+{
+  "type": "origins:modify_exhaustion",
+  "modifier": {
+    "name": "Big and heavy",
+    "value": 0.2,
+    "operation": "multiply_total"
+  },
+  "name": "Big and heavy",
+  "description": "Your size makes you get tired quickly and hungrier."
+}

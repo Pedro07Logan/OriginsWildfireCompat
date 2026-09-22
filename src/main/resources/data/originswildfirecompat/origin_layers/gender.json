@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "order": -1000,
+  "enabled": true,
+  "name": "Gender",
+  "missing_name": "No gender",
+  "missing_description": "Choose your gender to gain its traits.",
+  "origins": [
+    "originswildfirecompat:female",
+    "originswildfirecompat:male"
+  ],
+  "allow_random": false,
+  "allow_random_unchoosable": false,
+  "hidden": false
+}

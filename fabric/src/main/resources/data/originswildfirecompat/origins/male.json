@@ -1,0 +1,15 @@
+{
+  "powers": [
+    "originswildfirecompat:male_attributes",
+    "originswildfirecompat:male_exhaustion",
+    "originswildfirecompat:male_taken_damage",
+    "originswildfirecompat:male_haste"
+  ],
+  "icon": {
+    "item": "minecraft:cornflower"
+  },
+  "order": 2,
+  "impact": 2,
+  "name": "Male",
+  "description": "The gender of testosterone and brutality. Adds voice."
+}

@@ -1,0 +1,62 @@
+plugins {
+    id 'fabric-loom' version '1.10.5'
+    id 'java'
+}
+
+group = 'com.logan'
+version = '1.0.0'
+base {
+    archivesName = 'originswildfirecompat-fabric'
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+loom {
+    splitEnvironmentSourceSets()
+
+    mods {
+        originswildfirecompat {
+            sourceSet sourceSets.main
+            sourceSet sourceSets.client
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        name = 'Fabric'
+        url = 'https://maven.fabricmc.net/'
+    }
+    maven {
+        name = 'Modrinth'
+        url = 'https://api.modrinth.com/maven'
+    }
+}
+
+dependencies {
+    minecraft 'com.mojang:minecraft:1.20.1'
+    mappings 'net.fabricmc:yarn:1.20.1+build.10:v2'
+    modImplementation 'net.fabricmc:fabric-loader:0.16.9'
+    modImplementation 'net.fabricmc.fabric-api:fabric-api:0.92.12+1.20.1'
+
+    // Origins oficial Fabric 1.10.2+mc.1.20.1
+    modImplementation 'maven.modrinth:3BeIrqZR:oT0CGnBQ'
+
+    // Pehkui Fabric (cobre 1.20.1) 3.8.3
+    modImplementation 'maven.modrinth:t5W7Jfwy:6fzxx6SC'
+
+    // Wildfire's Female Gender Mod Fabric 1.20-3.0.1
+    modImplementation 'maven.modrinth:bcOsQHnC:nYZ0oktX'
+}
+
+processResources {
+    inputs.property 'version', project.version
+    filesMatching('fabric.mod.json') {
+        expand version: project.version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 17
+}

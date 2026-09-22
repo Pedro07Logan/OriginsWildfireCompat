@@ -1,0 +1,10 @@
+{
+  "type": "origins:modify_damage_taken",
+  "modifier": {
+    "name": "Physical vulnerability",
+    "value": 0.1,
+    "operation": "multiply_base"
+  },
+  "name": "Physical vulnerability",
+  "description": "Your small size makes you get hurt more easily. 10% more damage."
+}

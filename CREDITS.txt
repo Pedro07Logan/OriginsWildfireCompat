@@ -1,0 +1,20 @@
+Origins: Wildfire's Gender Compat
+by Logan (OLoganzito)
+License: MIT (see LICENSE.txt)
+
+This mod does NOT bundle the mods below. They are required
+separately (see mods.toml) and remain property of their authors:
+
+- Origins (Apace) - MIT
+  https://modrinth.com/mod/origins
+- Origins (Forge) port (EdwinMindcraft) - MIT
+  https://modrinth.com/mod/origins-forge
+- Caelus API (illusivesoulworks) - LGPL-3.0-or-later
+  https://modrinth.com/mod/caelus
+- Pehkui (Virtuoel) - MIT
+  https://modrinth.com/mod/pehkui
+- Wildfire's Female Gender Mod (WildfireRomeo) - LGPL-3.0-only
+  https://modrinth.com/mod/female-gender
+
+Compatibility is via public APIs and datapack JSONs only.
+No code was copied from the mods above.

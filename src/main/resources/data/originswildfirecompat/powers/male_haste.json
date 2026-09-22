@@ -1,0 +1,10 @@
+{
+  "type": "origins:modify_break_speed",
+  "modifier": {
+    "name": "Mining power",
+    "value": 0.1,
+    "operation": "multiply_base"
+  },
+  "name": "Mining power",
+  "description": "Your stronger arms make you break rocks 10% more easily."
+}

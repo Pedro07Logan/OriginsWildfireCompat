@@ -1,0 +1,25 @@
+{
+  "type": "origins:attribute",
+  "modifiers": [
+    {
+      "name": "Feminine agility",
+      "attribute": "minecraft:generic.movement_speed",
+      "value": 0.1,
+      "operation": "multiply_base"
+    },
+    {
+      "name": "Pretty face",
+      "attribute": "minecraft:generic.luck",
+      "value": 1.0,
+      "operation": "addition"
+    },
+    {
+      "name": "Delicate arms",
+      "attribute": "minecraft:generic.attack_damage",
+      "value": -0.2,
+      "operation": "multiply_base"
+    }
+  ],
+  "name": "Small but cunning",
+  "description": "Your smaller body makes you 10% more agile, but gives 20% less damage. Your pretty face brings you 2x luck."
+}
