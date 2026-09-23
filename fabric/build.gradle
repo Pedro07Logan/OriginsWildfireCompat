@@ -35,17 +35,17 @@ dependencies {
     modImplementation 'net.fabricmc:fabric-loader:0.19.5'
     modImplementation 'net.fabricmc.fabric-api:fabric-api:0.116.17+1.21.1'
 
-    // Origins Fabric 1.13.0-pre.3+mc.1.21.1 (pre-release, unica opcao 1.21.1)
+    // Origins Fabric 1.13.0-pre.3+mc.1.21.1 (pre-release, only option for 1.21.1)
     modImplementation 'maven.modrinth:3BeIrqZR:fcGzZVGn'
 
-    // Pehkui Fabric 3.8.3 (cobre 1.21.1)
+    // Pehkui Fabric 3.8.3 (covers 1.21.1)
     modImplementation 'maven.modrinth:t5W7Jfwy:6fzxx6SC'
 
-    // Wildfire's Female Gender Mod Fabric 3.2.1+1.21 (cobre 1.21/1.21.1)
+    // Wildfire's Female Gender Mod Fabric 3.2.1+1.21 (covers 1.21/1.21.1)
     modImplementation 'maven.modrinth:bcOsQHnC:kJmjQvAS'
 
-    // Calio 1.14.0 (transitiva do Origins/Apoli p/ compilar; runtime vem via JiJ do Origins)
-    // Jar extraido do JiJ do Apoli, pois o Apace nao publica o Calio 1.14 em Maven publico
+    // Calio 1.14.0 (transitive dep of Origins/Apoli for compiling; runtime comes via Origins' JiJ)
+    // Jar extracted from Apoli's JiJ, since Apace doesn't publish Calio 1.14 to a public Maven
     modImplementation files('libs/calio-1.14.0+mc.1.21.x.jar')
 }
 

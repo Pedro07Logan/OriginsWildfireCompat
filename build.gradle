@@ -53,7 +53,7 @@ minecraft {
             workingDirectory project.file('run-data')
 
             args '--mod',
-                    'originswildfi  recompat',
+                    'originswildfirecompat',
                     '--all',
                     '--output',
                     file('src/generated/resources/'),
@@ -85,14 +85,14 @@ repositories {
 dependencies {
     minecraft 'net.minecraftforge:forge:1.20.1-47.4.10'
 
-    // Origins Forge (port nativo EdwinMindcraft) 1.20.1-1.10.0.9
-    // implementation: vai p/ runtime. Em dev runClient o mixin dele quebra,
-    // mas em launcher real (producao) funciona. Teste via launcher + run/mods.
+    // Origins Forge (native port by EdwinMindcraft) 1.20.1-1.10.0.9
+    // implementation: goes to runtime. In dev runClient its mixin breaks,
+    // but works on real launchers (production). Test via launcher + run/mods.
     implementation fg.deobf(
             "maven.modrinth:jl3m2lR9:vynFXywM"
     )
 
-    // Caelus API Forge (dependencia do Origins Forge) 3.2.0+1.20.1
+    // Caelus API Forge (dependency of Origins Forge) 3.2.0+1.20.1
     implementation fg.deobf(
             "maven.modrinth:40FYwb4z:mRry0DgY"
     )
@@ -102,7 +102,7 @@ dependencies {
             "maven.modrinth:t5W7Jfwy:SQpqSgAE"
     )
 
-    // Wildfire's Female Gender Mod Forge 1.20.1-3.0.1 (port Forge de 3.1)
+    // Wildfire's Female Gender Mod Forge 1.20.1-3.0.1 (Forge port of 3.1)
     implementation fg.deobf(
             "maven.modrinth:bcOsQHnC:R1d8TWqL"
     )
