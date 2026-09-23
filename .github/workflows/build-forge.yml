@@ -1,19 +1,24 @@
-name: Build Fabric
+name: Build Forge
 
 on:
   push:
     branches: [main]
     paths:
-      - 'fabric/**'
+      - 'src/**'
+      - 'build.gradle'
       - 'settings.gradle'
       - 'gradle.properties'
-      - '.github/workflows/build-fabric.yml'
+      - '.github/workflows/build-forge.yml'
   push:
     tags:
-      - 'fabric-1.21.1-*'
+      - 'forge-1.20.1-*'
   pull_request:
     paths:
-      - 'fabric/**'
+      - 'src/**'
+      - 'build.gradle'
+      - 'settings.gradle'
+      - 'gradle.properties'
+      - '.github/workflows/build-forge.yml'
   workflow_dispatch:
 
 jobs:
@@ -21,31 +26,21 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    defaults:
-      run:
-        working-directory: fabric
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: 21
+          java-version: 17
       - uses: gradle/actions/setup-gradle@v4
         with:
           cache-disabled: true
-      - name: Make gradlew executable
-        run: chmod +x ../gradlew
-      - name: Build Fabric module
-        run: ../gradlew build --console=plain --stacktrace
+      - name: Build Forge module
+        run: ./gradlew build --console=plain --stacktrace
       - name: List built jars
         run: ls -l build/libs/
-      - name: Upload Fabric jar
-        uses: actions/upload-artifact@v4
-        with:
-          name: originswildfirecompat-fabric
-          path: fabric/build/libs/*.jar
       - name: Publish GitHub Release
         if: startsWith(github.ref, 'refs/tags/')
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release create "$GITHUB_REF_NAME" build/libs/originswildfirecompat-fabric-*.jar --generate-notes
+        run: gh release create "$GITHUB_REF_NAME" build/libs/originswildfirecompat-forge-*.jar --generate-notes
