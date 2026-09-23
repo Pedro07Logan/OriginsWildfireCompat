@@ -15,7 +15,6 @@
     "fabric-api": "*",
     "minecraft": "~1.20.1",
     "origins": "*",
-    "cardinal-components-entity": "*",
     "pehkui": "*",
     "wildfire_gender": "*"
   }

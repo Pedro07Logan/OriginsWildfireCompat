@@ -43,11 +43,6 @@ dependencies {
 
     // Wildfire's Female Gender Mod Fabric 1.20-3.0.1
     modImplementation 'maven.modrinth:bcOsQHnC:nYZ0oktX'
-
-    // Deps transitivas do Origins Fabric (necessarias p/ compilar contra a API)
-    modImplementation 'maven.modrinth:K01OU20C:Ielhod3p'
-    modImplementation 'maven.modrinth:DHQA06r4:rznTfjQf'
-    modImplementation 'maven.modrinth:9s6osm5g:2xQdCMyG'
 }
 
 processResources {

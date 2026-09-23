@@ -3,10 +3,8 @@ package com.logan.originswildfirecompat;
 import com.wildfire.api.WildfireAPI;
 import com.wildfire.main.GenderPlayer;
 import com.wildfire.main.networking.PacketSync;
-import io.github.apace100.origins.component.OriginComponent;
 import io.github.apace100.origins.origin.Origin;
 import io.github.apace100.origins.origin.OriginLayer;
-import io.github.apace100.origins.registry.ModComponents;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -30,19 +28,13 @@ public class OriginsWildfireCompatFabric implements ModInitializer {
     }
 
     private static void tickPlayer(ServerPlayerEntity player) {
-        OriginComponent component = ModComponents.ORIGIN.get(player);
-        OriginLayer layer = null;
-        for (OriginLayer candidate : component.getOrigins().keySet()) {
-            if (GENDER_LAYER_ID.equals(candidate.getIdentifier())) {
-                layer = candidate;
+        Origin current = null;
+        for (java.util.Map.Entry<OriginLayer, Origin> entry : Origin.get(player).entrySet()) {
+            if (GENDER_LAYER_ID.equals(entry.getKey().getIdentifier())) {
+                current = entry.getValue();
                 break;
             }
         }
-        if (layer == null) {
-            resetScale(player);
-            return;
-        }
-        Origin current = component.getOrigin(layer);
         if (current == null || current == Origin.EMPTY) {
             resetScale(player);
             return;
