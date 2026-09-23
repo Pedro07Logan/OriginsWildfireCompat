@@ -6,7 +6,6 @@ import com.wildfire.main.networking.PacketSync;
 import io.github.apace100.origins.component.OriginComponent;
 import io.github.apace100.origins.origin.Origin;
 import io.github.apace100.origins.origin.OriginLayer;
-import io.github.apace100.origins.origin.OriginLayers;
 import io.github.apace100.origins.registry.ModComponents;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
@@ -31,12 +30,18 @@ public class OriginsWildfireCompatFabric implements ModInitializer {
     }
 
     private static void tickPlayer(ServerPlayerEntity player) {
-        OriginLayer layer = OriginLayers.getLayer(GENDER_LAYER_ID);
+        OriginComponent component = ModComponents.ORIGIN.get(player);
+        OriginLayer layer = null;
+        for (OriginLayer candidate : component.getOrigins().keySet()) {
+            if (GENDER_LAYER_ID.equals(candidate.getIdentifier())) {
+                layer = candidate;
+                break;
+            }
+        }
         if (layer == null) {
             resetScale(player);
             return;
         }
-        OriginComponent component = ModComponents.ORIGIN.get(player);
         Origin current = component.getOrigin(layer);
         if (current == null || current == Origin.EMPTY) {
             resetScale(player);
