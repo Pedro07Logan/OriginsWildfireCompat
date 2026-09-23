@@ -26,7 +26,7 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x gradlew
       - name: Build Fabric module
-        run: ./gradlew :fabric:build -PincludeFabric=true --console=plain
+        run: ./gradlew :fabric:build -PincludeFabric=true --console=plain --stacktrace
       - name: Upload Fabric jar
         uses: actions/upload-artifact@v4
         with:
