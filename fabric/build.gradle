@@ -1,6 +1,12 @@
 plugins {
-    id 'fabric-loom' version '1.18.2'
+    id 'fabric-loom' version '1.11.8'
     id 'java'
+}
+
+configurations.all {
+    resolutionStrategy {
+        force 'com.google.code.gson:gson:2.11.0'
+    }
 }
 
 group = 'com.logan'
