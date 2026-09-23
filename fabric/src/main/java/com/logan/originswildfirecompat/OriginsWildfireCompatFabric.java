@@ -31,7 +31,7 @@ public class OriginsWildfireCompatFabric implements ModInitializer {
     private static void tickPlayer(ServerPlayerEntity player) {
         Origin current = null;
         for (java.util.Map.Entry<OriginLayer, Origin> entry : Origin.get(player).entrySet()) {
-            if (GENDER_LAYER_ID.equals(entry.getKey().getIdentifier())) {
+            if (GENDER_LAYER_ID.equals(entry.getKey().getId())) {
                 current = entry.getValue();
                 break;
             }
@@ -40,7 +40,7 @@ public class OriginsWildfireCompatFabric implements ModInitializer {
             resetScale(player);
             return;
         }
-        Identifier currentId = current.getIdentifier();
+        Identifier currentId = current.getId();
         if (FEMALE_ID.equals(currentId)) {
             applyScale(player, 0.93F);
             applyGender(player, Gender.FEMALE);

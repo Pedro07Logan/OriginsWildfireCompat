@@ -24,6 +24,10 @@ repositories {
         url = 'https://maven.fabricmc.net/'
     }
     maven {
+        name = 'JitPack'
+        url = 'https://jitpack.io'
+    }
+    maven {
         name = 'Modrinth'
         url = 'https://api.modrinth.com/maven'
     }
@@ -43,6 +47,9 @@ dependencies {
 
     // Wildfire's Female Gender Mod Fabric 3.2.1+1.21 (cobre 1.21/1.21.1)
     modImplementation 'maven.modrinth:bcOsQHnC:kJmjQvAS'
+
+    // Calio (transitiva do Origins/Apoli p/ compilar; runtime vem via JiJ do Origins)
+    modImplementation 'com.github.apace100:calio-fabric:1.14.0+mc.1.21.x'
 }
 
 processResources {
