@@ -5,7 +5,7 @@
     "originswildfirecompat:female_taken_damage"
   ],
   "icon": {
-    "item": "minecraft:rose_bush"
+    "id": "minecraft:rose_bush"
   },
   "order": 1,
   "impact": 2,

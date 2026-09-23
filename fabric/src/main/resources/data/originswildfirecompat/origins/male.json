@@ -6,7 +6,7 @@
     "originswildfirecompat:male_haste"
   ],
   "icon": {
-    "item": "minecraft:cornflower"
+    "id": "minecraft:cornflower"
   },
   "order": 2,
   "impact": 2,
