@@ -32,8 +32,10 @@ jobs:
         run: chmod +x ../gradlew
       - name: Build Fabric module
         run: ../gradlew build --console=plain --stacktrace
+      - name: List built jars
+        run: ls -l build/libs/
       - name: Upload Fabric jar
         uses: actions/upload-artifact@v4
         with:
           name: originswildfirecompat-fabric
-          path: build/libs/*.jar
+          path: fabric/build/libs/*.jar
