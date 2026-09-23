@@ -21,4 +21,7 @@ plugins {
 
 rootProject.name = 'OriginsWildfireCompat'
 
-include 'fabric'
+def includeFabric = providers.gradleProperty("includeFabric").getOrElse(System.getenv("INCLUDE_FABRIC") ?: "false") == "true"
+if (includeFabric) {
+    include 'fabric'
+}
