@@ -1,9 +1,8 @@
 {
   "type": "origins:modify_exhaustion",
   "modifier": {
-    "name": "Efficient exhaustion",
-    "value": -0.2,
-    "operation": "multiply_total"
+    "amount": -0.2,
+    "operation": "multiply_total_multiplicative"
   },
   "name": "Efficient exhaustion",
   "description": "Small bodies get tired slowly, so you are less hungry."

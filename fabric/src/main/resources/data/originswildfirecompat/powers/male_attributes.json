@@ -2,16 +2,16 @@
   "type": "origins:attribute",
   "modifiers": [
     {
-      "name": "Heavy body",
+      "id": "originswildfirecompat:heavy_body",
       "attribute": "minecraft:generic.movement_speed",
-      "value": -0.1,
-      "operation": "multiply_base"
+      "amount": -0.1,
+      "operation": "add_multiplied_base"
     },
     {
-      "name": "Brute strength",
+      "id": "originswildfirecompat:brute_strength",
       "attribute": "minecraft:generic.attack_damage",
-      "value": 0.2,
-      "operation": "multiply_base"
+      "amount": 0.2,
+      "operation": "add_multiplied_base"
     }
   ],
   "name": "Brute physic",

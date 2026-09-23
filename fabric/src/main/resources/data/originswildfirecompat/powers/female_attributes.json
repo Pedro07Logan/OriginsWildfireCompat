@@ -2,22 +2,22 @@
   "type": "origins:attribute",
   "modifiers": [
     {
-      "name": "Feminine agility",
+      "id": "originswildfirecompat:feminine_agility",
       "attribute": "minecraft:generic.movement_speed",
-      "value": 0.1,
-      "operation": "multiply_base"
+      "amount": 0.1,
+      "operation": "add_multiplied_base"
     },
     {
-      "name": "Pretty face",
+      "id": "originswildfirecompat:pretty_face",
       "attribute": "minecraft:generic.luck",
-      "value": 1.0,
-      "operation": "addition"
+      "amount": 1.0,
+      "operation": "add_value"
     },
     {
-      "name": "Delicate arms",
+      "id": "originswildfirecompat:delicate_arms",
       "attribute": "minecraft:generic.attack_damage",
-      "value": -0.2,
-      "operation": "multiply_base"
+      "amount": -0.2,
+      "operation": "add_multiplied_base"
     }
   ],
   "name": "Small but cunning",

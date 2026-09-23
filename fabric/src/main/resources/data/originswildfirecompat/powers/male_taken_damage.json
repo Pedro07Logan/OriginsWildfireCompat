@@ -1,9 +1,8 @@
 {
   "type": "origins:modify_damage_taken",
   "modifier": {
-    "name": "Physical resistance",
-    "value": -0.1,
-    "operation": "multiply_base"
+    "amount": -0.1,
+    "operation": "multiply_base_multiplicative"
   },
   "name": "Physical resistance",
   "description": "You were made for war. You take 10% less damage."
