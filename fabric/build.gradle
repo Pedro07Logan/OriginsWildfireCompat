@@ -3,19 +3,11 @@ plugins {
     id 'java'
 }
 
-configurations.all {
-    resolutionStrategy {
-        force 'com.google.code.gson:gson:2.11.0'
-    }
-}
-
 group = 'com.logan'
 version = '1.0.0'
 base {
     archivesName = 'originswildfirecompat-fabric'
 }
-
-java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 loom {
     mods {

@@ -26,6 +26,8 @@ jobs:
           distribution: temurin
           java-version: 21
       - uses: gradle/actions/setup-gradle@v4
+        with:
+          cache-disabled: true
       - name: Make gradlew executable
         run: chmod +x ../gradlew
       - name: Build Fabric module
