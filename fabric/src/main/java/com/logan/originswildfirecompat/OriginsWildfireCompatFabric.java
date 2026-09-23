@@ -10,27 +10,27 @@ import io.github.apace100.origins.origin.OriginLayers;
 import io.github.apace100.origins.registry.ModComponents;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.Identifier;
 import virtuoel.pehkui.api.ScaleData;
 import virtuoel.pehkui.api.ScaleTypes;
 
 public class OriginsWildfireCompatFabric implements ModInitializer {
     public static final String MOD_ID = "originswildfirecompat";
-    private static final ResourceLocation GENDER_LAYER_ID = new ResourceLocation(MOD_ID, "gender");
-    private static final ResourceLocation FEMALE_ID = new ResourceLocation(MOD_ID, "female");
-    private static final ResourceLocation MALE_ID = new ResourceLocation(MOD_ID, "male");
+    private static final Identifier GENDER_LAYER_ID = new Identifier(MOD_ID, "gender");
+    private static final Identifier FEMALE_ID = new Identifier(MOD_ID, "female");
+    private static final Identifier MALE_ID = new Identifier(MOD_ID, "male");
 
     @Override
     public void onInitialize() {
         ServerTickEvents.END_SERVER_TICK.register(server -> {
-            for (ServerPlayer player : server.getPlayerList().getPlayers()) {
+            for (ServerPlayerEntity player : server.getPlayerManager().getPlayerList()) {
                 tickPlayer(player);
             }
         });
     }
 
-    private static void tickPlayer(ServerPlayer player) {
+    private static void tickPlayer(ServerPlayerEntity player) {
         OriginLayer layer = OriginLayers.getLayer(GENDER_LAYER_ID);
         if (layer == null) {
             resetScale(player);
@@ -42,7 +42,7 @@ public class OriginsWildfireCompatFabric implements ModInitializer {
             resetScale(player);
             return;
         }
-        ResourceLocation currentId = current.getIdentifier();
+        Identifier currentId = current.getIdentifier();
         if (FEMALE_ID.equals(currentId)) {
             applyScale(player, 0.93F);
             applyGender(player, GenderPlayer.Gender.FEMALE);
@@ -54,7 +54,7 @@ public class OriginsWildfireCompatFabric implements ModInitializer {
         }
     }
 
-    private static void applyScale(ServerPlayer player, float target) {
+    private static void applyScale(ServerPlayerEntity player, float target) {
         ScaleData data = ScaleTypes.HEIGHT.getScaleData(player);
         if (Math.abs(data.getTargetScale() - target) > 0.001F) {
             data.setTargetScale(target);
@@ -63,7 +63,7 @@ public class OriginsWildfireCompatFabric implements ModInitializer {
         }
     }
 
-    private static void resetScale(ServerPlayer player) {
+    private static void resetScale(ServerPlayerEntity player) {
         ScaleData data = ScaleTypes.HEIGHT.getScaleData(player);
         if (Math.abs(data.getTargetScale() - 1.0F) > 0.001F) {
             data.resetScale();
@@ -71,8 +71,8 @@ public class OriginsWildfireCompatFabric implements ModInitializer {
         }
     }
 
-    private static void applyGender(ServerPlayer player, GenderPlayer.Gender desired) {
-        GenderPlayer gp = WildfireAPI.getPlayerById(player.getUUID());
+    private static void applyGender(ServerPlayerEntity player, GenderPlayer.Gender desired) {
+        GenderPlayer gp = WildfireAPI.getPlayerById(player.getUuid());
         if (gp == null) {
             return;
         }
