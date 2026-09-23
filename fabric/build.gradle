@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'com.logan'
-version = '1.0.0'
+version = '1.21.1-1.0.0'
 base {
     archivesName = 'originswildfirecompat-fabric'
 }
@@ -30,19 +30,19 @@ repositories {
 }
 
 dependencies {
-    minecraft 'com.mojang:minecraft:1.20.1'
-    mappings 'net.fabricmc:yarn:1.20.1+build.10:v2'
-    modImplementation 'net.fabricmc:fabric-loader:0.16.9'
-    modImplementation 'net.fabricmc.fabric-api:fabric-api:0.92.12+1.20.1'
+    minecraft 'com.mojang:minecraft:1.21.1'
+    mappings 'net.fabricmc:yarn:1.21.1+build.3:v2'
+    modImplementation 'net.fabricmc:fabric-loader:0.19.5'
+    modImplementation 'net.fabricmc.fabric-api:fabric-api:0.116.17+1.21.1'
 
-    // Origins oficial Fabric 1.10.2+mc.1.20.1
-    modImplementation 'maven.modrinth:3BeIrqZR:oT0CGnBQ'
+    // Origins Fabric 1.13.0-pre.3+mc.1.21.1 (pre-release, unica opcao 1.21.1)
+    modImplementation 'maven.modrinth:3BeIrqZR:fcGzZVGn'
 
-    // Pehkui Fabric (cobre 1.20.1) 3.8.3
+    // Pehkui Fabric 3.8.3 (cobre 1.21.1)
     modImplementation 'maven.modrinth:t5W7Jfwy:6fzxx6SC'
 
-    // Wildfire's Female Gender Mod Fabric 1.20-3.0.1
-    modImplementation 'maven.modrinth:bcOsQHnC:nYZ0oktX'
+    // Wildfire's Female Gender Mod Fabric 3.2.1+1.21 (cobre 1.21/1.21.1)
+    modImplementation 'maven.modrinth:bcOsQHnC:kJmjQvAS'
 }
 
 processResources {
@@ -53,5 +53,5 @@ processResources {
 }
 
 tasks.withType(JavaCompile).configureEach {
-    it.options.release = 17
+    it.options.release = 21
 }

@@ -1,8 +1,9 @@
 package com.logan.originswildfirecompat;
 
 import com.wildfire.api.WildfireAPI;
-import com.wildfire.main.GenderPlayer;
-import com.wildfire.main.networking.PacketSync;
+import com.wildfire.main.Gender;
+import com.wildfire.main.entitydata.PlayerConfig;
+import com.wildfire.main.networking.WildfireSync;
 import io.github.apace100.origins.origin.Origin;
 import io.github.apace100.origins.origin.OriginLayer;
 import net.fabricmc.api.ModInitializer;
@@ -14,9 +15,9 @@ import virtuoel.pehkui.api.ScaleTypes;
 
 public class OriginsWildfireCompatFabric implements ModInitializer {
     public static final String MOD_ID = "originswildfirecompat";
-    private static final Identifier GENDER_LAYER_ID = new Identifier(MOD_ID, "gender");
-    private static final Identifier FEMALE_ID = new Identifier(MOD_ID, "female");
-    private static final Identifier MALE_ID = new Identifier(MOD_ID, "male");
+    private static final Identifier GENDER_LAYER_ID = Identifier.of(MOD_ID, "gender");
+    private static final Identifier FEMALE_ID = Identifier.of(MOD_ID, "female");
+    private static final Identifier MALE_ID = Identifier.of(MOD_ID, "male");
 
     @Override
     public void onInitialize() {
@@ -42,10 +43,10 @@ public class OriginsWildfireCompatFabric implements ModInitializer {
         Identifier currentId = current.getIdentifier();
         if (FEMALE_ID.equals(currentId)) {
             applyScale(player, 0.93F);
-            applyGender(player, GenderPlayer.Gender.FEMALE);
+            applyGender(player, Gender.FEMALE);
         } else if (MALE_ID.equals(currentId)) {
             applyScale(player, 1.05F);
-            applyGender(player, GenderPlayer.Gender.MALE);
+            applyGender(player, Gender.MALE);
         } else {
             resetScale(player);
         }
@@ -68,20 +69,20 @@ public class OriginsWildfireCompatFabric implements ModInitializer {
         }
     }
 
-    private static void applyGender(ServerPlayerEntity player, GenderPlayer.Gender desired) {
-        GenderPlayer gp = WildfireAPI.getPlayerById(player.getUuid());
-        if (gp == null) {
+    private static void applyGender(ServerPlayerEntity player, Gender desired) {
+        PlayerConfig cfg = WildfireAPI.getPlayerById(player.getUuid());
+        if (cfg == null) {
             return;
         }
-        if (gp.getGender() != desired) {
-            gp.updateGender(desired);
-            if (desired == GenderPlayer.Gender.FEMALE) {
-                gp.updateHurtSounds(true);
-                if (gp.getBustSize() < 0.1F) {
-                    gp.updateBustSize(0.6F);
+        if (cfg.getGender() != desired) {
+            cfg.updateGender(desired);
+            if (desired == Gender.FEMALE) {
+                cfg.updateHurtSounds(true);
+                if (cfg.getBustSize() < 0.1F) {
+                    cfg.updateBustSize(0.6F);
                 }
             }
-            PacketSync.sendToOthers(player, gp);
+            WildfireSync.sendToAllClients(player, cfg);
         }
     }
 }
