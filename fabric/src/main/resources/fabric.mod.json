@@ -6,7 +6,6 @@
   "description": "Compatibility mod between Origins, Wildfire's Female Gender Mod and Pehkui. Adds Male and Female Origins with different gameplay characteristics.",
   "authors": ["OLoganzito"],
   "license": "MIT",
-  "icon": "assets/originswildfirecompat/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": ["com.logan.originswildfirecompat.OriginsWildfireCompatFabric"]
